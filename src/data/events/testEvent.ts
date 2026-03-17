@@ -1,0 +1,112 @@
+import { EventMaster } from "@/src/types/game";
+
+export const TEST_EVENT: EventMaster = {
+    id: "event_test_gate_whisper",
+    name: "성문 아래의 속삭임",
+    codeName: "testGateWhisper",
+    category: "tutorial",
+    routeTags: ["common"],
+    loreTier: "A",
+    weight: 100,
+    minDay: 1,
+    maxDay: 1,
+    repeatPolicy: "once_per_run",
+    priority: 100,
+    conditions: [],
+    blockConditions: [],
+    title: "성문 아래의 속삭임",
+    description:
+        "순찰 도중 성벽 아래에서 기묘한 속삭임이 들려온다. 아직 누구도 눈치채지 못한 것 같다.",
+    speakerId: null,
+    locationId: "loc_outer_wall",
+    illustrationHint: null,
+    choices: [
+        {
+            id: "choice_investigate",
+            text: "소리가 난 곳을 직접 조사한다",
+            style: "risk",
+            showConditions: [],
+            lockConditions: [],
+            lockReasonText: null,
+            previewText: "위험할 수 있음",
+            successRateFormula: null,
+            resultGroups: [
+                {
+                    id: "result_investigate_default",
+                    conditions: [],
+                    chanceWeight: 100,
+                    resultText:
+                        "무너진 돌 틈에서 검은 낙인을 발견했다. 불길하지만 중요한 단서일지도 모른다.",
+                    effects: [
+                        {
+                            type: "modify_resource",
+                            target: "knowledge",
+                            operation: "add",
+                            value: 1,
+                            durationDays: null,
+                            metadata: null,
+                        },
+                        {
+                            type: "add_flag",
+                            target: "flag_found_black_mark",
+                            operation: "grant",
+                            value: true,
+                            durationDays: null,
+                            metadata: null,
+                        },
+                    ],
+                    nextEventId: null,
+                    grantLoreId: null,
+                },
+            ],
+            nextEventId: null,
+            battleId: null,
+            tags: [],
+        },
+        {
+            id: "choice_report",
+            text: "상관에게 바로 보고한다",
+            style: "support",
+            showConditions: [],
+            lockConditions: [],
+            lockReasonText: null,
+            previewText: "안전한 선택",
+            successRateFormula: null,
+            resultGroups: [
+                {
+                    id: "result_report_default",
+                    conditions: [],
+                    chanceWeight: 100,
+                    resultText:
+                        "상관은 네 보고를 진지하게 받아들였고, 경계 강화를 지시했다. 신중함이 좋은 인상을 남겼다.",
+                    effects: [
+                        {
+                            type: "modify_resource",
+                            target: "reputation",
+                            operation: "add",
+                            value: 1,
+                            durationDays: null,
+                            metadata: null,
+                        },
+                    ],
+                    nextEventId: null,
+                    grantLoreId: null,
+                },
+            ],
+            nextEventId: null,
+            battleId: null,
+            tags: [],
+        },
+    ],
+    onEnterEffects: [],
+    onExitEffects: [],
+    followUpEventIds: [],
+    relatedCharacterIds: [],
+    relatedFactionIds: ["faction_knights"],
+    tags: ["mvp", "tutorial"],
+    isHidden: false,
+    isActive: true,
+    version: 1,
+};
+
+export const EVENT_POOL: EventMaster[] = [TEST_EVENT];
